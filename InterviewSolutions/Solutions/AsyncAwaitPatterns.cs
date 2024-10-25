@@ -9,6 +9,53 @@ Key Concepts:
   * Handle exceptions properly in async context
 */
 
+// Without async/await (more verbose)
+public Task<string> GetDataTraditional()
+{
+    return Task.Run(() => {
+        // Some operation
+        return "result";
+    })
+    .ContinueWith(task => {
+        var result = task.Result;
+        return ProcessData(result);
+    });
+}
+
+// With async/await (syntactic sugar)
+public async Task<string> GetDataModern()
+{
+    var result = await Task.Run(() => "result");
+    return await ProcessData(result);
+}
+
+public async Task DoWorkAsync()
+{
+    await Task.Delay(1000); // Simulates work
+    // More async operations
+}
+
+// Using async/await in methods
+public async Task<string> GetDataAsync()
+{
+    var result = await someService.FetchDataAsync();
+    return result;
+}
+
+// Running tasks in parallel
+Task[] tasks = new[]
+{
+    Task.Run(() => DoWork1()),
+    Task.Run(() => DoWork2())
+};
+await Task.WhenAll(tasks);
+
+// Running tasks sequentially
+await Task1();
+await Task2();
+
+
+
 public class AsyncAwaitPatterns
 {
     // Basic async pattern

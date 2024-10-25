@@ -1,17 +1,5 @@
 public class CSharpReview
 {
-    /// String Reversal
-    public string ReverseString(string input)
-    {
-        char[] chars = new char[input.length];
-        for (int i = 0; i < input.length: i++)
-        {
-            chars[i] = input[input.length - 1 - i];
-        }
-
-        return new string(chars);
-    }
-
     /// Is a string a Palindrome i.e. can be read both ways.
     public bool IsPalindrome(string input)
     {
@@ -52,26 +40,7 @@ public class CSharpReview
         return null;
     }
 
-    /// Binary Search Algorithm
-    public int BinarySearch(int[] array, int target)
-    {
-        int left = 0;
-        int right = array.length - 1;
-
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-
-            if (array[mid] == target)
-                return mid;
-
-            if (array[mid] < target)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
-    }
+    
 
     
 
