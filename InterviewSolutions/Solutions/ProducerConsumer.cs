@@ -1,14 +1,19 @@
-// Implement a producer-consumer pattern using async/await
-public class ProducerConsumer
+// Implemention a producer-consumer pattern using async/await
+// You can see a much better, more complete message bus system
+// in my GolangMessageBus example located here: https://github.com/edancain/GolangMessageBus
+
+using System.Threading.Channels;
+
+public class PublisherSubscriber
 {
     private readonly Channel<int> _channel;
 
-    public ProducerConsumer()
+    public PublisherSubscriber()
     {
         _channel = Channel.CreateUnbounded<int>();
     }
 
-    public async Task ProduceAsync(CancellationToken token)
+    public async Task PublishAsync(CancellationToken token)
     {
         var random = new Random();
         while (!token.IsCancellationRequested)
@@ -18,7 +23,7 @@ public class ProducerConsumer
         }
     }
 
-    public async Task ConsumeAsync(CancellationToken token)
+    public async Task SubscribeAsync(CancellationToken token)
     {
         await foreach (var item in _channel.Reader.ReadAllAsync(token))
         {
